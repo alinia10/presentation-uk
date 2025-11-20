@@ -96,7 +96,7 @@ st.header("📍 The Critical Transport Triangle")
 col_map, col_info = st.columns([1.2, 1])
 
 with col_map:
-    st.image("5.png", width=True, caption="Map of Key Transport Hubs")
+    st.image("5.png", use_container_width=True, caption="Map of Key Transport Hubs")
     st.caption("👇 Select a station to view passenger statistics and details.")
     
     # Interactive selection
@@ -110,17 +110,17 @@ with col_info:
     st.markdown(f"### {station_selector}")
     
     if station_selector == "St Pancras International":
-        st.image("1.png", width=True)
+        st.image("1.png", use_container_width=True)
         st.metric(label="Yearly Usage", value="35,959,980", delta="High Volume")
         st.info("International trains: It’s the London terminal for the Eurostar, which runs high-speed trains to Paris, Brussels, Amsterdam, and other destinations in Europe.")
 
     elif station_selector == "Kings Cross Station":
-        st.image("2.png", width=True)
+        st.image("2.png", use_container_width=True)
         st.metric(label="Yearly Usage", value="24,483,824", delta="Major Interchange")
         st.info("Major UK rail hub: Trains from King’s Cross go mainly to the north and east of England, including: York, Newcastle, Leeds, Edinburgh (Scotland), and Other destinations along the East Coast Main Line.")
 
     elif station_selector == "Camden Town Station":
-        st.image("3.png", width=True)
+        st.image("3.png", use_container_width=True)
         
         # Growth Chart Data
         growth_data = pd.DataFrame({
@@ -138,7 +138,7 @@ with col_info:
             color_discrete_sequence=['#1f77b4']  # Standard Blue
         )
         fig_growth.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
-        st.plotly_chart(fig_growth, width=True)
+        st.plotly_chart(fig_growth, use_container_width=True)
         st.info("Major UK rail hub: Trains from King’s Cross go mainly to the north and east of England, including: York, Newcastle, Leeds, Edinburgh (Scotland), and Other destinations along the East Coast Main Line.")
 st.markdown("---")
 
@@ -150,7 +150,7 @@ st.header("🛍️ Inverness Street Market")
 col_mkt_img, col_mkt_text = st.columns([1, 1])
 
 with col_mkt_img:
-    st.image("4.png", width=True, caption="Inverness Street Market")
+    st.image("4.png", use_container_width=True, caption="Inverness Street Market")
 
 with col_mkt_text:
     st.markdown("#### The Commerce-Crime Nexus")
@@ -176,7 +176,7 @@ img_drugs = load_and_resize_image("7.png")
 with col_cctv:
     st.subheader("1. The Requirement")
     if img_exchange:
-        st.image(img_exchange, width=True, caption="Hand-to-Hand Exchange")
+        st.image(img_exchange, use_container_width=True, caption="Hand-to-Hand Exchange")
     st.success("""
     **Actionable Evidence:**
     Police require clear footage of a **hand-to-hand exchange** (money for drugs).
@@ -185,7 +185,7 @@ with col_cctv:
 with col_find:
     st.subheader("2. The Problem")
     if img_drugs:
-        st.image(img_drugs, width=True, caption="Drugs Found in Bin")
+        st.image(img_drugs, use_container_width=True, caption="Drugs Found in Bin")
     st.error("""
     **Insufficient Evidence:**
     Finding drugs in bins or on the ground is **not enough** without linking possession to a suspect.
@@ -254,7 +254,7 @@ fig_imports.update_layout(
 fig_imports.update_traces(texttemplate='£%{text}B', textposition='outside')
 
 # 1. Render the Chart First
-st.plotly_chart(fig_imports, width=True)
+st.plotly_chart(fig_imports, use_container_width=True)
 
 # 2. Render the Button Below the Chart
 col_btn, col_space = st.columns([1, 4])
@@ -318,7 +318,7 @@ if not df_incidents.empty:
         legend=dict(yanchor="top", y=1, xanchor="left", x=1.02) # Move legend to side
     )
     
-    st.plotly_chart(fig_advanced, width=True)
+    st.plotly_chart(fig_advanced, use_container_width=True)
 else:
     st.warning("No data available for analysis.")
 st.write("Escalating drug-related costs for the council and rising crime rates have become a serious concern. Reports show a significant increase in resident complaints about various forms of anti-social behaviour across Camden.")
@@ -416,7 +416,7 @@ with col_cycle_viz:
         plot_bgcolor="rgba(0,0,0,0)"
     )
     
-    st.plotly_chart(fig_cycle, width=True)
+    st.plotly_chart(fig_cycle, use_container_width=True)
 
 # --- Right Column: Details Panel + Perspectives ---
 with col_cycle_text:
