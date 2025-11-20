@@ -1,5 +1,5 @@
 [project]
-name = "my_city_dashboard"
+name = "presentation-uk"
 version = "0.1.0"
 description = "Default template for PDM package"
 authors = [
