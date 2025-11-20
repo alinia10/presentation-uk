@@ -140,7 +140,6 @@ with col_info:
         fig_growth.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
         st.plotly_chart(fig_growth, use_container_width=True)
         st.info("Major UK rail hub: Trains from King’s Cross go mainly to the north and east of England, including: York, Newcastle, Leeds, Edinburgh (Scotland), and Other destinations along the East Coast Main Line.")
-        st.info("")
 st.markdown("---")
 
 # -----------------------------------------------------------------------------
