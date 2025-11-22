@@ -829,11 +829,11 @@ with col_diagram:
 
     # Impact Node (Red)
     dot.attr('node', fillcolor='#d92828', fontcolor='white')
-    dot.node('Impact', 'SOCIAL IMPACT:\nRough Sleepers,\nCongregation')
+    dot.node('Impact', 'SOCIAL IMPACT:\nRough Sleepers,\nbeggars, thieves, \nand those involved \nin violent crime')
 
     # Cost Node (Yellow)
     dot.attr('node', fillcolor='#ffcc00', fontcolor='black')
-    dot.node('Cost', '$$ Council Costs\n& Crime Rates')
+    dot.node('Cost', '£ Council Costs\n& Crime Rates')
 
     # --- EDGES ---
     dot.attr('edge', color='#555555', arrowsize='0.6', penwidth='1.2')
@@ -849,7 +849,7 @@ with col_diagram:
     dot.attr('edge', style='dashed', color='#d92828')
     dot.edge('D', 'Impact')
     dot.edge('E', 'Cost')
-
+    dot.edge('Impact', 'Cost')
     # Render with a specific height/width constraint via Streamlit
     st.graphviz_chart(dot, use_container_width=True)
 
@@ -857,52 +857,6 @@ with col_text:
     # --- TEXT CONTENT ---
     # This box is designed to visually balance the graph size
     st.markdown("""
-    <div style="
-        background-color: #f8f9fa; 
-        padding: 25px; 
-        border-radius: 8px; 
-        border-left: 8px solid #0e1b3c;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    ">
-        <h3 style="color: #0e1b3c; margin-top: 0; font-size: 20px;">Operational Context</h3>
-        
-        <p style="font-size: 16px; line-height: 1.5;">
-            <b>1. The "Perfect" Storm:</b><br>
-            The diagram illustrates a self-sustaining loop. The location serves as a logistics hub (Kings Cross) rather than just a street corner.
-        </p>
-        
-        <p style="font-size: 16px; line-height: 1.5;">
-            <b>2. The Human Cost (Red Box):</b><br>
-            Buyers don't just leave; they congregate. This creates a permanent settlement of rough sleepers and beggars, directly impacting borough resources.
-        </p>
-
-        <div style="
-            margin-top: 20px; 
-            padding: 10px; 
-            background-color: #ffeded; 
-            border-radius: 5px; 
-            color: #d92828; 
-            font-weight: bold; 
-            font-size: 14px;
-            text-align: center;
-        ">
-            ⚠️ Strategic Priority: Break the link between <br>Step 3 (Market) and Step 4 (Buyers).
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-import streamlit as st
-import graphviz
-
-st.header("🔄 The Cycle of Supply & Local Impact")
-
-# 1. Render the Static Diagram
-diagram_width = 500 
-
-# 1. Render the Static Diagram
-# We use 'width' instead of 'use_container_width' to control the size
-st.image("9.png", width=diagram_width)
-# 2. Professional Description Box
-st.markdown("""
     <style>
     .cycle-box {
         background-color: #f8f9fa; /* Very light grey background */
@@ -943,135 +897,60 @@ st.markdown("""
         </div>
     </div>
 """, unsafe_allow_html=True)
-import streamlit as st
-
-st.markdown("---")
-
-# -----------------------------------------------------------------------------
-# REFERENCES & DATA SOURCE BOX
-# -----------------------------------------------------------------------------
-
-# 1. Custom CSS for the Reference Section
-st.markdown("""
-    <style>
-    .ref-container {
-        background-color: #fcfcfc;
-        border: 1px solid #e0e0e0;
-        border-radius: 10px;
-        padding: 20px;
-        border-top: 5px solid #0e1b3c; /* Camden Navy Top Border */
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    
-    .ref-header {
-        color: #0e1b3c;
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        font-family: 'Helvetica Neue', sans-serif;
-        display: flex;
-        align-items: center;
-    }
-
-    .ref-link-box {
-        margin-top: 10px;
-    }
-    
-    /* Styling for the individual links */
-    .ref-link-item {
-        display: block;
-        background-color: white;
-        padding: 10px 15px;
-        margin-bottom: 8px;
-        border-left: 4px solid #d92828; /* Red Accent */
-        color: #333;
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 14px;
-        transition: all 0.3s;
-        border-radius: 0 5px 5px 0;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    
-    .ref-link-item:hover {
-        background-color: #f0f2f6;
-        padding-left: 20px; /* Slide effect */
-        color: #0e1b3c;
-        text-decoration: none;
-    }
-    
-    .ref-note {
-        font-size: 12px;
-        color: #666;
-        font-style: italic;
-        margin-top: 10px;
-    }
-    </style>
-""", unsafe_allow_html=True)
 
 
-# # -----------------------------------------------------------------------------
-# # REFERENCES & DATA SOURCES BOX
-# # -----------------------------------------------------------------------------
+# st.header("🔄 The Cycle of Supply & Local Impact")
 
+# # 1. Render the Static Diagram
+# diagram_width = 500 
+
+# # 1. Render the Static Diagram
+# # We use 'width' instead of 'use_container_width' to control the size
+# st.image("9.png", width=diagram_width)
+# # 2. Professional Description Box
 # st.markdown("""
 #     <style>
-#     .ref-box {
-#         background-color: #f8f9fa; /* Light grey background */
-#         border: 1px solid #e0e0e0;
+#     .cycle-box {
+#         background-color: #f8f9fa; /* Very light grey background */
 #         border-radius: 8px;
 #         padding: 25px;
-#         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-#         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+#         border-left: 8px solid #0e1b3c; /* Camden Navy Accent */
+#         box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Subtle shadow for depth */
 #         margin-top: 20px;
+#         margin-bottom: 20px;
 #     }
-    
-#     .ref-header {
-#         color: #0e1b3c; /* Camden Navy */
-#         font-size: 18px;
-#         font-weight: 700;
-#         margin-bottom: 15px;
-#         border-bottom: 2px solid #d92828; /* Red Accent */
-#         padding-bottom: 8px;
-#         display: flex;
-#         align-items: center;
+#     .cycle-text {
+#         font-family: 'Helvetica Neue', Arial, sans-serif;
+#         font-size: 16px;
+#         line-height: 1.6;
+#         color: #2c3e50;
+#         text-align: justify;
 #     }
-    
-#     .ref-section-title {
-#         color: #0e1b3c;
-#         font-size: 14px;
-#         font-weight: 700;
-#         margin-top: 12px;
-#         margin-bottom: 4px;
-#         text-transform: uppercase;
-#         letter-spacing: 0.5px;
-#     }
-    
-#     .ref-text {
-#         color: #444;
-#         font-size: 14px;
-#         line-height: 1.5;
-#         margin-bottom: 8px;
-#     }
-    
-#     .ref-highlight {
+#     .highlight-red {
 #         font-weight: 600;
 #         color: #d92828;
 #     }
+#     .highlight-navy {
+#         font-weight: 700;
+#         color: #0e1b3c;
+#     }
 #     </style>
 
-#     <div class="ref-box">
-#         <div class="ref-header">
-#             📚 Data Sources & Evidence Base
+#     <div class="cycle-box">
+#         <div class="cycle-text">
+#             <span class="highlight-navy">Drug providers</span> supply drugs to distributors, who then sell them in the market. 
+#             This market can attract individuals such as 
+#             <span class="highlight-red">rough sleepers, beggars, thieves, and those involved in violent crime</span>, 
+#             all seeking money to purchase drugs.
+#             <br><br>
+#             This situation places a significant <b>financial burden on the council</b>, as they must address these issues 
+#             and manage the negative impact on the Borough's reputation. Additionally, the growth of drug dealing in this market 
+#             exacerbates problems, leading to increased costs and challenges for both residents and local businesses.
 #         </div>
-
-       
 #     </div>
 # """, unsafe_allow_html=True)
+# st.markdown("---")
 
-# -----------------------------------------------------------------------------
-# REFERENCES & DATA SOURCES BOX
-# -----------------------------------------------------------------------------
 
 # -----------------------------------------------------------------------------
 # REFERENCES & DATA SOURCES BOX
