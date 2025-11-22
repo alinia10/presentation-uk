@@ -234,7 +234,7 @@ with col_title:
         <div class="header-box">
             <div class="header-title">Turning Threat into Opportunity:</div>
             <div class="header-title">A Protection Strategy for Camden</div>
-            <div class="header-subtitle">Short-, Medium-, and Long-Term Strategic Planning Framework</div>
+            <div class="header-subtitle">Short, Medium, and Long-Term Strategic Planning Framework</div>
         </div>
     """, unsafe_allow_html=True)
 
@@ -1068,3 +1068,4 @@ st.markdown("""
        
     </div>
 """, unsafe_allow_html=True)
+
