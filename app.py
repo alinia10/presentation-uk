@@ -792,106 +792,106 @@ st.markdown("---")
 # -----------------------------------------------------------------------------
 
 
-# st.header("🔄 The Cycle of Supply & Local Impact")
+st.header("🔄 The Cycle of Supply & Local Impact")
 
-# # 1. Layout: Equal columns (1:1) and Vertically Centered
-# col_diagram, col_text = st.columns([1, 1], gap="large", vertical_alignment="center")
+# 1. Layout: Equal columns (1:1) and Vertically Centered
+col_diagram, col_text = st.columns([1, 1], gap="large", vertical_alignment="center")
 
-# with col_diagram:
-#     # Initialize Graphviz
-#     dot = graphviz.Digraph(comment='Drug Market Cycle')
+with col_diagram:
+    # Initialize Graphviz
+    dot = graphviz.Digraph(comment='Drug Market Cycle')
     
-#     # --- COMPACT GRAPH STYLING ---
-#     # rankdir='LR' (Left-to-Right) often fits presentations better than Top-Bottom
-#     # newrank='true' helps align nodes better
-#     dot.attr(rankdir='TB', newrank='true') 
-#     dot.attr(splines='curved') # Curved lines look cleaner and take less space
-#     dot.attr(nodesep='0.3')    # Reduce space between nodes width-wise
-#     dot.attr(ranksep='0.4')    # Reduce space between levels height-wise
-#     dot.attr(bgcolor='transparent')
+    # --- COMPACT GRAPH STYLING ---
+    # rankdir='LR' (Left-to-Right) often fits presentations better than Top-Bottom
+    # newrank='true' helps align nodes better
+    dot.attr(rankdir='TB', newrank='true') 
+    dot.attr(splines='curved') # Curved lines look cleaner and take less space
+    dot.attr(nodesep='0.3')    # Reduce space between nodes width-wise
+    dot.attr(ranksep='0.4')    # Reduce space between levels height-wise
+    dot.attr(bgcolor='transparent')
     
-#     # Node Style (Smaller and sharper)
-#     dot.attr('node', shape='box', style='filled, rounded', 
-#              fillcolor='#0e1b3c', # Camden Navy
-#              fontcolor='white', 
-#              fontname='Arial', 
-#              fontsize='10',       # Smaller font
-#              margin='0.1,0.1',    # Tighter margins inside boxes
-#              height='0.4')
+    # Node Style (Smaller and sharper)
+    dot.attr('node', shape='box', style='filled, rounded', 
+             fillcolor='#0e1b3c', # Camden Navy
+             fontcolor='white', 
+             fontname='Arial', 
+             fontsize='10',       # Smaller font
+             margin='0.1,0.1',    # Tighter margins inside boxes
+             height='0.4')
 
-#     # --- NODES ---
-#     # Using shorter labels to keep boxes small
-#     dot.node('A', '1. Providers')
-#     dot.node('B', '2. Distributors')
-#     dot.node('C', '3. The Market\n(Hub)')
-#     dot.node('D', '4. Buyers')
-#     dot.node('E', '5. Reinforcement')
+    # --- NODES ---
+    # Using shorter labels to keep boxes small
+    dot.node('A', '1. Providers')
+    dot.node('B', '2. Distributors')
+    dot.node('C', '3. The Market\n(Hub)')
+    dot.node('D', '4. Buyers')
+    dot.node('E', '5. Reinforcement')
 
-#     # Impact Node (Red)
-#     dot.attr('node', fillcolor='#d92828', fontcolor='white')
-#     dot.node('Impact', 'SOCIAL IMPACT:\nRough Sleepers,\nCongregation')
+    # Impact Node (Red)
+    dot.attr('node', fillcolor='#d92828', fontcolor='white')
+    dot.node('Impact', 'SOCIAL IMPACT:\nRough Sleepers,\nCongregation')
 
-#     # Cost Node (Yellow)
-#     dot.attr('node', fillcolor='#ffcc00', fontcolor='black')
-#     dot.node('Cost', '$$ Council Costs\n& Crime Rates')
+    # Cost Node (Yellow)
+    dot.attr('node', fillcolor='#ffcc00', fontcolor='black')
+    dot.node('Cost', '$$ Council Costs\n& Crime Rates')
 
-#     # --- EDGES ---
-#     dot.attr('edge', color='#555555', arrowsize='0.6', penwidth='1.2')
+    # --- EDGES ---
+    dot.attr('edge', color='#555555', arrowsize='0.6', penwidth='1.2')
     
-#     # Main Cycle
-#     dot.edge('A', 'B')
-#     dot.edge('B', 'C')
-#     dot.edge('C', 'D')
-#     dot.edge('D', 'E')
-#     dot.edge('E', 'A')
+    # Main Cycle
+    dot.edge('A', 'B')
+    dot.edge('B', 'C')
+    dot.edge('C', 'D')
+    dot.edge('D', 'E')
+    dot.edge('E', 'A')
 
-#     # Consequences (Dotted)
-#     dot.attr('edge', style='dashed', color='#d92828')
-#     dot.edge('D', 'Impact')
-#     dot.edge('E', 'Cost')
+    # Consequences (Dotted)
+    dot.attr('edge', style='dashed', color='#d92828')
+    dot.edge('D', 'Impact')
+    dot.edge('E', 'Cost')
 
-#     # Render with a specific height/width constraint via Streamlit
-#     st.graphviz_chart(dot, use_container_width=True)
+    # Render with a specific height/width constraint via Streamlit
+    st.graphviz_chart(dot, use_container_width=True)
 
-# with col_text:
-#     # --- TEXT CONTENT ---
-#     # This box is designed to visually balance the graph size
-#     st.markdown("""
-#     <div style="
-#         background-color: #f8f9fa; 
-#         padding: 25px; 
-#         border-radius: 8px; 
-#         border-left: 8px solid #0e1b3c;
-#         box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-#     ">
-#         <h3 style="color: #0e1b3c; margin-top: 0; font-size: 20px;">Operational Context</h3>
+with col_text:
+    # --- TEXT CONTENT ---
+    # This box is designed to visually balance the graph size
+    st.markdown("""
+    <div style="
+        background-color: #f8f9fa; 
+        padding: 25px; 
+        border-radius: 8px; 
+        border-left: 8px solid #0e1b3c;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    ">
+        <h3 style="color: #0e1b3c; margin-top: 0; font-size: 20px;">Operational Context</h3>
         
-#         <p style="font-size: 16px; line-height: 1.5;">
-#             <b>1. The "Perfect" Storm:</b><br>
-#             The diagram illustrates a self-sustaining loop. The location serves as a logistics hub (Kings Cross) rather than just a street corner.
-#         </p>
+        <p style="font-size: 16px; line-height: 1.5;">
+            <b>1. The "Perfect" Storm:</b><br>
+            The diagram illustrates a self-sustaining loop. The location serves as a logistics hub (Kings Cross) rather than just a street corner.
+        </p>
         
-#         <p style="font-size: 16px; line-height: 1.5;">
-#             <b>2. The Human Cost (Red Box):</b><br>
-#             Buyers don't just leave; they congregate. This creates a permanent settlement of rough sleepers and beggars, directly impacting borough resources.
-#         </p>
+        <p style="font-size: 16px; line-height: 1.5;">
+            <b>2. The Human Cost (Red Box):</b><br>
+            Buyers don't just leave; they congregate. This creates a permanent settlement of rough sleepers and beggars, directly impacting borough resources.
+        </p>
 
-#         <div style="
-#             margin-top: 20px; 
-#             padding: 10px; 
-#             background-color: #ffeded; 
-#             border-radius: 5px; 
-#             color: #d92828; 
-#             font-weight: bold; 
-#             font-size: 14px;
-#             text-align: center;
-#         ">
-#             ⚠️ Strategic Priority: Break the link between <br>Step 3 (Market) and Step 4 (Buyers).
-#         </div>
-#     </div>
-#     """, unsafe_allow_html=True)
-# import streamlit as st
-# import graphviz
+        <div style="
+            margin-top: 20px; 
+            padding: 10px; 
+            background-color: #ffeded; 
+            border-radius: 5px; 
+            color: #d92828; 
+            font-weight: bold; 
+            font-size: 14px;
+            text-align: center;
+        ">
+            ⚠️ Strategic Priority: Break the link between <br>Step 3 (Market) and Step 4 (Buyers).
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+import streamlit as st
+import graphviz
 
 st.header("🔄 The Cycle of Supply & Local Impact")
 
