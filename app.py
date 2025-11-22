@@ -1010,6 +1010,65 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
+# # -----------------------------------------------------------------------------
+# # REFERENCES & DATA SOURCES BOX
+# # -----------------------------------------------------------------------------
+
+# st.markdown("""
+#     <style>
+#     .ref-box {
+#         background-color: #f8f9fa; /* Light grey background */
+#         border: 1px solid #e0e0e0;
+#         border-radius: 8px;
+#         padding: 25px;
+#         font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+#         box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+#         margin-top: 20px;
+#     }
+    
+#     .ref-header {
+#         color: #0e1b3c; /* Camden Navy */
+#         font-size: 18px;
+#         font-weight: 700;
+#         margin-bottom: 15px;
+#         border-bottom: 2px solid #d92828; /* Red Accent */
+#         padding-bottom: 8px;
+#         display: flex;
+#         align-items: center;
+#     }
+    
+#     .ref-section-title {
+#         color: #0e1b3c;
+#         font-size: 14px;
+#         font-weight: 700;
+#         margin-top: 12px;
+#         margin-bottom: 4px;
+#         text-transform: uppercase;
+#         letter-spacing: 0.5px;
+#     }
+    
+#     .ref-text {
+#         color: #444;
+#         font-size: 14px;
+#         line-height: 1.5;
+#         margin-bottom: 8px;
+#     }
+    
+#     .ref-highlight {
+#         font-weight: 600;
+#         color: #d92828;
+#     }
+#     </style>
+
+#     <div class="ref-box">
+#         <div class="ref-header">
+#             📚 Data Sources & Evidence Base
+#         </div>
+
+       
+#     </div>
+# """, unsafe_allow_html=True)
+
 # -----------------------------------------------------------------------------
 # REFERENCES & DATA SOURCES BOX
 # -----------------------------------------------------------------------------
@@ -1058,14 +1117,34 @@ st.markdown("""
         font-weight: 600;
         color: #d92828;
     }
+    
+    /* Style for the link to make it look professional */
+    .ref-link {
+        color: #d92828; /* Red Accent */
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 1px dotted #d92828;
+        transition: all 0.2s;
+    }
+    .ref-link:hover {
+        color: #0e1b3c; /* Change to Navy on hover */
+        border-bottom: 1px solid #0e1b3c;
+    }
     </style>
 
     <div class="ref-box">
         <div class="ref-header">
             📚 Data Sources & Evidence Base
         </div>
+        
+        <div class="ref-section-title">📄 Source Document</div>
+        <div class="ref-text">
+            • <a href="https://lbcamden-my.sharepoint.com/personal/sam_niaraeis_camden_gov_uk/_layouts/15/doc.aspx?sourcedoc={466af313-4082-4097-b9d9-04a473c1d542}&action=edit" 
+                 target="_blank" 
+                 class="ref-link">
+                 Crime & Safety around Camden Town Station
+              </a>
+        </div>
 
-       
-    </div>
+       </div>
 """, unsafe_allow_html=True)
-
