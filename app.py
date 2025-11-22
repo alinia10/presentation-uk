@@ -11,9 +11,10 @@ import graphviz
 # -----------------------------------------------------------------------------
 # 1. PAGE CONFIGURATION
 # -----------------------------------------------------------------------------
+icon_image = Image.open("logo.png")
 st.set_page_config(
     page_title="Camden Strategy Framework",
-    page_icon="🛡️",
+    page_icon=icon_image,
     layout="wide",
     initial_sidebar_state="collapsed", # Collapsed gives more room for the presentation
     menu_items={
@@ -149,14 +150,8 @@ def load_data():
 
 # Load data into session
 df_incidents = load_data()
-# -----------------------------------------------------------------------------
-# 3. TITLE SLIDE
-# -----------------------------------------------------------------------------
-# st.title("🛡️ Camden Borough Protection Strategy: Short-, Medium-, and Long-Term Planning Framework")
-# st.subheader("Camden has the opportunity to set a strong example in London by addressing a case that not only demands the attention of the government and the Mayor of London, but is also a pressing issue within the borough itself. Police records show that Camden ranks among the top London boroughs for drug dealing. Despite the council’s efforts to deploy more officers and increase police presence on the streets this year, Camden remains at the top of the list. This suggests a lack of strategic planning behind these measures.")
-# st.subheader("In this meeting, we aim to discuss and develop a comprehensive approach—divided into a one-year, three-year, and five-year plan—not only to tackle this issue in Camden, but also to share our learning with other boroughs.")
-# st.subheader("My research indicates that one of the key reasons Camden faces this challenge is its proximity to major transport hubs: St Pancras International and King's Cross Station. These stations provide easy access for visitors from across the UK and Europe, allowing individuals to travel to Camden, conduct business, and return home the same day. Please refer to the map and station details for further context.")
-# st.markdown("---")
+
+
 # -----------------------------------------------------------------------------
 # 3. TITLE SLIDE - OPTIMIZED LAYOUT
 # -----------------------------------------------------------------------------
@@ -171,13 +166,14 @@ st.markdown("""
         border-radius: 10px;
         border-left: 12px solid #d92828; /* Red Accent */
         color: white;
-        text-align: left;
+        text-align: center; /* CHANGED TO CENTER */
         box-shadow: 0px 6px 10px rgba(0,0,0,0.2);
         /* Ensure box fills height to match logo visual weight */
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center; /* Centers items horizontally in flex container */
     }
     
     /* Large Title Font */
@@ -214,32 +210,93 @@ st.markdown("""
         color: #000000 !important;
     }
     
-    /* Make the Executive Summary headers pop */
+    /* Make Headers pop */
     h3 {
         font-weight: 800 !important;
         color: #0e1b3c !important;
+    }
+    h4 {
+        font-weight: 700 !important;
+        color: #d92828 !important; /* Red accent for smaller headers */
     }
     </style>
 """, unsafe_allow_html=True)
 
 # 2. Create the Layout [1, 3]
-# This gives the Logo 1 part width, and the Title 3 parts width.
-# The logo will naturally look smaller and "lower" in visual weight.
 col_logo, col_title = st.columns([1, 3], gap="medium", vertical_alignment="center")
 
 with col_logo:
-    # The logo is now restricted to the smaller column width
+    # Replace "8.png" with your actual image path
     st.image("8.png", use_container_width=True)
 
 with col_title:
     st.markdown("""
         <div class="header-box">
-            <div class="header-title">Camden Borough Protection Strategy</div>
+            <div class="header-title">Turning Threat into Opportunity:</div>
+            <div class="header-title">A Protection Strategy for Camden</div>
             <div class="header-subtitle">Short-, Medium-, and Long-Term Strategic Planning Framework</div>
         </div>
     """, unsafe_allow_html=True)
 
-# 3. Executive Summary Content
+st.markdown("---")
+
+# -----------------------------------------------------------------------------
+# NEW SECTION: STRATEGIC CONTEXT (Formatted Professional Text)
+# -----------------------------------------------------------------------------
+st.subheader("📌 Strategic Context & Rationale")
+
+# Intro Paragraph (Full Width)
+st.write(
+    """
+    Camden has a significant opportunity to set a positive example among London boroughs by tackling a challenge 
+    that requires not only local action but also the attention of central government and the Mayor of London. 
+    **Current police data consistently ranks Camden among the highest boroughs for drug-related activity**, 
+    creating an urgent need for a specialized approach.
+    """
+)
+
+# Split the analysis into two columns for better readability
+ctx_col1, ctx_col2 = st.columns(2, gap="large")
+
+with ctx_col1:
+    st.markdown("#### The Operational Gap")
+    st.write(
+        """
+        Despite increased police deployment and a stronger on-street presence over the past year, 
+        Camden remains at the top of crime rankings. This indicates a critical disconnect:
+        
+        * **Effort vs. Impact:** Operational efforts have increased, but results have plateaued.
+        * **Missing Framework:** Tactical enforcement has not been supported by a sufficiently robust, 
+            data-driven strategic framework.
+        """
+    )
+
+with ctx_col2:
+    st.markdown("#### The Catalyst: Transport Hubs")
+    st.write(
+        """
+        Research highlights that the primary driver of Camden’s persistent challenge is its proximity to 
+        major international and national transport hubs:
+        
+        * **St Pancras International & King’s Cross Station**
+        * These hubs offer seamless "in-and-out" access for individuals from across the UK and Europe.
+        * This high mobility enables offenders to conduct illicit activity and return home the same day, 
+            drastically increasing the complexity of local enforcement.
+        """
+    )
+
+# The Proposal / Solution (Highlighted in a box)
+st.success(
+    "**The Proposal:** This plan aims to develop a comprehensive protection strategy—structured across "
+    "**one-year, three-year, and five-year plans**—that will not only reduce drug-related activity in "
+    "Camden but also create a repeatable model that other London boroughs can adopt."
+)
+
+st.caption("Please refer to the accompanying map and station-area analysis for further context.")
+
+# -----------------------------------------------------------------------------
+# 3. Executive Summary Content (Existing)
+# -----------------------------------------------------------------------------
 st.markdown("---")
 st.subheader("📋 Executive Summary")
 
@@ -311,29 +368,88 @@ with col_info:
         st.metric(label="Yearly Usage", value="24,483,824", delta="Major Interchange")
         st.info("Major UK rail hub: Trains from King’s Cross go mainly to the north and east of England, including: York, Newcastle, Leeds, Edinburgh (Scotland), and Other destinations along the East Coast Main Line.")
 
+#     elif station_selector == "Camden Town Station":
+#         st.image("3.png", use_container_width=True)
+        
+#         # Growth Chart Data
+#         growth_data = pd.DataFrame({
+#             "Year": ["2020", "2021", "2022", "2023"],
+#             "Passengers (Millions)": [5.51, 9.12, 17.34, 18.81]
+#         })
+        
+#         # Area Chart for Growth
+#         fig_growth = px.area(
+#             growth_data, 
+#             x="Year", 
+#             y="Passengers (Millions)", 
+#             title="📈 Explosive Passenger Growth",
+#             markers=True,
+#             color_discrete_sequence=['#1f77b4']  # Standard Blue
+#         )
+#         fig_growth.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
+#         st.plotly_chart(fig_growth, use_container_width=True)
+#         st.info("Major UK rail hub: Trains from King’s Cross go mainly to the north and east of England, including: York, Newcastle, Leeds, Edinburgh (Scotland), and Other destinations along the East Coast Main Line.")
+# st.markdown("---")
     elif station_selector == "Camden Town Station":
         st.image("3.png", use_container_width=True)
         
-        # Growth Chart Data
-        growth_data = pd.DataFrame({
-            "Year": ["2020", "2021", "2022", "2023"],
-            "Passengers (Millions)": [5.51, 9.12, 17.34, 18.81]
-        })
+        # --- CUSTOM COLORED CHART LOGIC ---
         
-        # Area Chart for Growth
-        fig_growth = px.area(
-            growth_data, 
-            x="Year", 
-            y="Passengers (Millions)", 
-            title="📈 Explosive Passenger Growth",
-            markers=True,
-            color_discrete_sequence=['#1f77b4']  # Standard Blue
-        )
-        fig_growth.update_layout(height=300, margin=dict(l=0, r=0, t=30, b=0))
-        st.plotly_chart(fig_growth, use_container_width=True)
-        st.info("Major UK rail hub: Trains from King’s Cross go mainly to the north and east of England, including: York, Newcastle, Leeds, Edinburgh (Scotland), and Other destinations along the East Coast Main Line.")
-st.markdown("---")
+        fig_growth = go.Figure()
 
+        # 1. Blue Segment (2020 to 2021)
+        fig_growth.add_trace(go.Scatter(
+            x=["2020", "2021"],
+            y=[5.51, 9.12],
+            mode='lines+markers',
+            fill='tozeroy',  # Fills area to x-axis
+            line=dict(color='#1f77b4', width=3), # Blue
+            name="Recovery"
+        ))
+
+        # 2. Yellow Segment (2021 to 2022)
+        fig_growth.add_trace(go.Scatter(
+            x=["2021", "2022"],
+            y=[9.12, 17.34],
+            mode='lines+markers',
+            fill='tozeroy',
+            line=dict(color='#f1c40f', width=3), # Warning Yellow
+            name="Growth"
+        ))
+
+        # 3. Red Segment (2022 to 2023)
+        fig_growth.add_trace(go.Scatter(
+            x=["2022", "2023"],
+            y=[17.34, 18.81],
+            mode='lines+markers',
+            fill='tozeroy',
+            line=dict(color='#d92828', width=3), # Danger Red
+            name="High Traffic"
+        ))
+
+        # Update Layout to lock X-Axis and styling
+        fig_growth.update_layout(
+            title="📈 Explosive Passenger Growth",
+            height=300,
+            margin=dict(l=0, r=0, t=30, b=0),
+            showlegend=False, # Hide legend to keep it clean
+            xaxis=dict(
+                tickmode='array', # Forces Plotly to use only the ticks we provide
+                tickvals=["2020", "2021", "2022", "2023"], # Exact labels
+                showgrid=False
+            ),
+            yaxis=dict(
+                title="Passengers (Millions)",
+                showgrid=True,
+                gridcolor='#f0f0f0'
+            )
+        )
+
+        st.plotly_chart(fig_growth, use_container_width=True)
+        
+        st.info("Major UK rail hub: Trains from King’s Cross go mainly to the north and east of England, including: York, Newcastle, Leeds, Edinburgh (Scotland), and Other destinations along the East Coast Main Line.")
+
+    st.markdown("---")
 # -----------------------------------------------------------------------------
 # 5. MARKET CONTEXT
 # -----------------------------------------------------------------------------
@@ -357,10 +473,46 @@ st.markdown("---")
 # -----------------------------------------------------------------------------
 # 6. EVIDENCE & POLICING CHALLENGES
 # -----------------------------------------------------------------------------
-st.header("⚖️ The Evidence Challenge")
+import base64
+
+# Function to load image and convert to base64 so it can be used in HTML
+def get_img_as_base64(file_path):
+    with open(file_path, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+# 1. Convert your image
+img_str = get_img_as_base64("ju.png")
+
+# 2. Render Header with Inline Image
+st.markdown(f"""
+    <h2 style="display: flex; align-items: center;">
+        <img src="data:image/png;base64,{img_str}" 
+             style="width: 40px; height: 40px; margin-right: 10px; border-radius: 5px;">
+        The Evidence Challenge
+    </h2>
+    """, unsafe_allow_html=True)
 
 col_cctv, col_find = st.columns(2)
+import base64
 
+# Function to load image and convert to base64 so it can be used in HTML
+def get_img_as_base64(file_path):
+    with open(file_path, "rb") as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+# 1. Convert your image
+img_str = get_img_as_base64("ju.png")
+
+# 2. Render Header with Inline Image
+st.markdown(f"""
+    <h2 style="display: flex; align-items: center;">
+        <img src="data:image/png;base64,{img_str}" 
+             style="width: 40px; height: 40px; margin-right: 10px; border-radius: 5px;">
+        The Evidence Challenge
+    </h2>
+    """, unsafe_allow_html=True)
 # Using the resize function to ensure images match perfectly in height/aspect
 img_exchange = load_and_resize_image("6.png")
 img_drugs = load_and_resize_image("7.png")
@@ -491,7 +643,49 @@ with col_btn:
         if st.button("Reset Chart"):
             st.session_state['reveal_drug_market'] = False
             st.rerun()
+url = "https://www.independent.co.uk/news/uk/crime/russia-war-money-laundering-uk-operation-destabilise-keremet-b2869448.html"
 
+st.markdown(f"""
+    <a href="{url}" target="_blank" style="text-decoration: none;">
+        <div style="
+            padding: 20px;
+            background-color: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            border-left: 10px solid #d92828; /* Matching your Red Accent */
+            box-shadow: 0px 4px 10px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        ">
+            <div style="
+                color: #555; 
+                font-size: 12px; 
+                font-weight: 600; 
+                text-transform: uppercase; 
+                letter-spacing: 1px; 
+                margin-bottom: 8px;
+            ">
+                📰 Related Intelligence / Media Report
+            </div>
+            <div style="
+                color: #0e1b3c; /* Matching your Camden Navy */
+                font-size: 20px; 
+                font-weight: 700; 
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                line-height: 1.4;
+                margin-bottom: 10px;
+            ">
+                How billion-dollar money laundering network in UK ‘bought bank to fund Russian war effort’
+            </div>
+            <div style="
+                color: #d92828; 
+                font-size: 14px; 
+                font-weight: 600;
+            ">
+                Read full article on The Independent &rarr;
+            </div>
+        </div>
+    </a>
+""", unsafe_allow_html=True)
 st.markdown("---")
 
 # -----------------------------------------------------------------------------
@@ -701,57 +895,176 @@ st.markdown("---")
 
 st.header("🔄 The Cycle of Supply & Local Impact")
 
-# Initialize Graphviz
-dot = graphviz.Digraph(comment='Drug Market Cycle')
+# 1. Render the Static Diagram
+diagram_width = 500 
 
-# --- GRAPH STYLING ---
-dot.attr(rankdir='LR', newrank='true') 
-dot.attr(splines='curved') 
-dot.attr(nodesep='0.4')    
-dot.attr(ranksep='0.5')    
-dot.attr(bgcolor='transparent')
+# 1. Render the Static Diagram
+# We use 'width' instead of 'use_container_width' to control the size
+st.image("9.png", width=diagram_width)
+# 2. Professional Description Box
+st.markdown("""
+    <style>
+    .cycle-box {
+        background-color: #f8f9fa; /* Very light grey background */
+        border-radius: 8px;
+        padding: 25px;
+        border-left: 8px solid #0e1b3c; /* Camden Navy Accent */
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Subtle shadow for depth */
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .cycle-text {
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #2c3e50;
+        text-align: justify;
+    }
+    .highlight-red {
+        font-weight: 600;
+        color: #d92828;
+    }
+    .highlight-navy {
+        font-weight: 700;
+        color: #0e1b3c;
+    }
+    </style>
 
-# Node Style
-dot.attr('node', shape='box', style='filled, rounded', 
-         fillcolor='#0e1b3c', fontcolor='white', fontname='Arial', 
-         fontsize='10', margin='0.1,0.1', height='0.4')
+    <div class="cycle-box">
+        <div class="cycle-text">
+            <span class="highlight-navy">Drug providers</span> supply drugs to distributors, who then sell them in the market. 
+            This market can attract individuals such as 
+            <span class="highlight-red">rough sleepers, beggars, thieves, and those involved in violent crime</span>, 
+            all seeking money to purchase drugs.
+            <br><br>
+            This situation places a significant <b>financial burden on the council</b>, as they must address these issues 
+            and manage the negative impact on the Borough's reputation. Additionally, the growth of drug dealing in this market 
+            exacerbates problems, leading to increased costs and challenges for both residents and local businesses.
+        </div>
+    </div>
+""", unsafe_allow_html=True)
+import streamlit as st
 
-# --- NODES ---
-dot.node('A', '1. Providers')
-dot.node('B', '2. Distributors')
-dot.node('C', '3. The Market\n(Hub)')
-dot.node('D', '4. Buyers')
-dot.node('E', '5. Reinforcement')
+st.markdown("---")
 
-# Impact/Cost Nodes
-dot.attr('node', fillcolor='#d92828', fontcolor='white')
-dot.node('Impact', 'SOCIAL IMPACT:\nRough Sleepers')
+# -----------------------------------------------------------------------------
+# REFERENCES & DATA SOURCE BOX
+# -----------------------------------------------------------------------------
 
-dot.attr('node', fillcolor='#ffcc00', fontcolor='black')
-dot.node('Cost', '$$ Costs')
+# 1. Custom CSS for the Reference Section
+st.markdown("""
+    <style>
+    .ref-container {
+        background-color: #fcfcfc;
+        border: 1px solid #e0e0e0;
+        border-radius: 10px;
+        padding: 20px;
+        border-top: 5px solid #0e1b3c; /* Camden Navy Top Border */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .ref-header {
+        color: #0e1b3c;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-family: 'Helvetica Neue', sans-serif;
+        display: flex;
+        align-items: center;
+    }
 
-# --- EDGES ---
-dot.attr('edge', color='#555555', arrowsize='0.6', penwidth='1.2')
+    .ref-link-box {
+        margin-top: 10px;
+    }
+    
+    /* Styling for the individual links */
+    .ref-link-item {
+        display: block;
+        background-color: white;
+        padding: 10px 15px;
+        margin-bottom: 8px;
+        border-left: 4px solid #d92828; /* Red Accent */
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+        transition: all 0.3s;
+        border-radius: 0 5px 5px 0;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .ref-link-item:hover {
+        background-color: #f0f2f6;
+        padding-left: 20px; /* Slide effect */
+        color: #0e1b3c;
+        text-decoration: none;
+    }
+    
+    .ref-note {
+        font-size: 12px;
+        color: #666;
+        font-style: italic;
+        margin-top: 10px;
+    }
+    </style>
+""", unsafe_allow_html=True)
 
-# 1. THE BOTTOM PATH (1 -> 2 -> 3 -> 4 -> 5)
-# Force A -> B to go "down" by leaving A from South ('s') and entering B from West ('w')
-dot.edge('A', 'B', tailport='s', headport='w')
 
-dot.edge('B', 'C')
-dot.edge('C', 'D')
+# -----------------------------------------------------------------------------
+# REFERENCES & DATA SOURCES BOX
+# -----------------------------------------------------------------------------
 
-# Force D -> E to go "up" by entering E from South ('s')
-dot.edge('D', 'E', tailport='e', headport='s')
+st.markdown("""
+    <style>
+    .ref-box {
+        background-color: #f8f9fa; /* Light grey background */
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 25px;
+        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        margin-top: 20px;
+    }
+    
+    .ref-header {
+        color: #0e1b3c; /* Camden Navy */
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        border-bottom: 2px solid #d92828; /* Red Accent */
+        padding-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .ref-section-title {
+        color: #0e1b3c;
+        font-size: 14px;
+        font-weight: 700;
+        margin-top: 12px;
+        margin-bottom: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .ref-text {
+        color: #444;
+        font-size: 14px;
+        line-height: 1.5;
+        margin-bottom: 8px;
+    }
+    
+    .ref-highlight {
+        font-weight: 600;
+        color: #d92828;
+    }
+    </style>
 
-# 2. THE TOP ARCH (5 -> 1)
-# This creates the loop over the top using North ('n') ports
-dot.attr('edge', color='#555555', penwidth='1.5')
-dot.edge('E', 'A', tailport='n', headport='n', label=' Cycle Returns')
+    <div class="ref-box">
+        <div class="ref-header">
+            📚 Data Sources & Evidence Base
+        </div>
 
-# 3. SIDE CONSEQUENCES
-dot.attr('edge', style='dashed', color='#d92828', penwidth='1.0')
-dot.edge('D', 'Impact', dir='forward') # From Buyers
-dot.edge('E', 'Cost', dir='forward')   # From Reinforcement
-
-st.graphviz_chart(dot, use_container_width=True)
-
+       
+    </div>
+""", unsafe_allow_html=True)
